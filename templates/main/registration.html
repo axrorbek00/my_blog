@@ -1,0 +1,21 @@
+{% extends 'layauts/base.html' %}
+{% load crispy_forms_filters %}
+{% load i18n %}
+
+
+{% block content %}
+    <div class="col-6 offset-3 mt-5">
+        <div class="card">
+            <div class="card-header bg-dark text-white">
+                {% trans 'Registration' %}
+            </div>
+            <div class="card-body">
+                <form action="{% url 'user:registration' %}" method="post">
+                    {% csrf_token %}
+                    {{ registration_form|crispy }}
+                    <button class="btn btn-primary px-5 py-2">{% trans 'Save' %}</button>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}

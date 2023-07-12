@@ -1,6 +1,26 @@
 {% extends 'layauts/base.html' %}
+{% load crispy_forms_filters %}
+{% load hitcount_tags %}
 
 
 {% block content %}
+    {% for post in posts %}
+        <div class="col-4 mt-3 ">
+            <div class="card mb-3">
+                <img src="{{ post.img.url }}" class="card-img-top" alt="{{ post.title }}" style="height: 250px">
+                <div class="card-body">
+                    {% get_hit_count for post as hit_c %}
+                    <h5 class="card-title"><a href="{% url 'blog:detail' post.id %}" class="text-dark">{{ post.title|title }}</a></h5>
+                    <p class="card-text">{{ post.body|safe|truncatewords:4 }}</p>
+                    <p class="card-text d-flex justify-content-between"><small class="text-body-secondary">{{ post.create_add|timesince }} ago</small>
+                        <span class="bi bi-eye-fill">
+                        {{ hit_c }}
+                    </span> </p>
 
+
+                </div>
+            </div>
+
+        </div>
+    {% endfor %}
 {% endblock %}

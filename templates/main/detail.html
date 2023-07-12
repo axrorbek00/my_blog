@@ -1,6 +1,19 @@
 {% extends 'layauts/base.html' %}
-
+{% load hitcount_tags %}
 
 {% block content %}
-
+    <div class="col-8 offset-2 mt-3">
+        <img src="{{ post_id.img.url }}" alt="{{ post_id.title }}" class="img-fluid" style="height: 350px">
+        <h1>{{ post_id.title }}</h1>
+        <p>{{ post_id.body|safe }}</p>
+        <div class="d-flex justify-content-between" style="width: 525px">
+            {% get_hit_count for post_id as hit_c %}
+            <span>
+                {{ post_id.create_add|timesince }}
+            </span>
+            <span class="bi bi-eye-fill">
+                {{ hit_c }}
+            </span>
+        </div>
+    </div>
 {% endblock %}

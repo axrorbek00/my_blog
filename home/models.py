@@ -31,8 +31,8 @@ class PostModel(models.Model):
     body = RichTextField()
     img = models.ImageField(upload_to='posts/')
     create_add = models.DateTimeField(auto_now_add=True)
-    category = models.ForeignKey(CategoryModel, on_delete=models.RESTRICT)
-    tag = models.ManyToManyField(TagModel, related_name='posts')
+    # category = models.ForeignKey(CategoryModel, on_delete=models.RESTRICT)
+    # tag = models.ManyToManyField(TagModel, related_name='posts')
     user = models.ForeignKey(UzerModel, on_delete=models.RESTRICT)
 
     def __str__(self):
